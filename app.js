@@ -27,6 +27,11 @@ app.use(morgan('dev'))
 app.use('/CrediApp/api',Main)
 app.use(express.urlencoded({ extended: true}));
 app.use(bodyParser.json());
+//
+
+app.get("/",(req,res)=>{
+    res.send("Working")
+})
 //Initialization of database connection and server
 moongose.connect(
     uri,
