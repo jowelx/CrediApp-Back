@@ -5,11 +5,13 @@ import cors from 'cors'
 import Main from './routes/main.routes.js'
 import {ERROR_CONNECTION,SUCCESFULL_CONNECTION ,SERVER}from './src/constants/Text.js'
 import bodyParser from 'body-parser';
+import Dotenv from 'dotenv'
 
 const uri = "mongodb+srv://db-ark-trac:db-ark-trac@cluster0.df8hk.mongodb.net/CrediApp?retryWrites=true&w=majority";
 
 const app =express();
 //setting
+Dotenv.config()
 app.use(cors(/*options*/));
 app.set('port', process.env.PORT || 4000)
 app.use((req, res, next) => {
@@ -26,9 +28,6 @@ app.use('/CrediApp/api',Main)
 app.use(express.urlencoded({ extended: true}));
 app.use(bodyParser.json());
 //Initialization of database connection and server
-app.get('/',(req,res)=>{
-    res.send("ok")
-})
 moongose.connect(
     uri,
     {useNewUrlParser:true},
